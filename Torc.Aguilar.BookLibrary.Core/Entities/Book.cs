@@ -32,5 +32,9 @@ namespace Torc.Aguilar.BookLibrary.Core.Entities
         [Column("category")]
         [MaxLength(50)]
         public string Category { get; set; }
+
+        [Column("status")]
+        [MaxLength(15)]
+        public string Status { get; set; }
     }
 }

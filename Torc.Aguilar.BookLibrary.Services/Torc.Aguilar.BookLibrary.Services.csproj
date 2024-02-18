@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Torc.Aguilar.BookLibrary.Core\Torc.Aguilar.BookLibrary.Core.csproj" />
-    <ProjectReference Include="..\Torc.Aguilar.BookLibrary.DTOs\Torc.Aguilar.BookLibrary.DTOs.csproj" />
+    <ProjectReference Include="..\Torc.Aguilar.BookLibrary.DTOs\Torc.Aguilar.BookLibrary.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ namespace Torc.Aguilar.BookLibrary.Services
 {
     public class BaseService<T, TId, TDto> : IBaseService<T, TId, TDto> where T : BaseEntity<TId>
     {
-        private readonly IBaseRepository<T, TId> _repo;
+        internal readonly IBaseRepository<T, TId> _repo;
 
         internal readonly IMapper _mapper;
 

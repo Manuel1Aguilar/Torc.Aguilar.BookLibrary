@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Torc.Aguilar.BookLibrary.DTOs
+namespace Torc.Aguilar.BookLibrary.Models.DTOs
 {
     public class BookDto
     {
@@ -14,5 +14,6 @@ namespace Torc.Aguilar.BookLibrary.DTOs
         public string Type { get; set; }
         public string ISBN { get; set; }
         public string Category { get; set; }
+        public string Status { get; set; }
     }
 }

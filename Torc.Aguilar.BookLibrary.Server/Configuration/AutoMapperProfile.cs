@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Torc.Aguilar.BookLibrary.Core.Entities;
-using Torc.Aguilar.BookLibrary.DTOs;
+using Torc.Aguilar.BookLibrary.Models.DTOs;
 
 namespace Torc.Aguilar.BookLibrary.API.Configuration
 {

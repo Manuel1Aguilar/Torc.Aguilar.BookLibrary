@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Torc.Aguilar.BookLibrary.Core.Entities;
+using Torc.Aguilar.BookLibrary.Core.Utilities;
 
 namespace Torc.Aguilar.BookLibrary.Infrastructure.Data
 {
@@ -19,6 +20,7 @@ namespace Torc.Aguilar.BookLibrary.Infrastructure.Data
             {
                 b.Property(b => b.TotalCopies).HasDefaultValue(0);
                 b.Property(b => b.CopiesInUse).HasDefaultValue(0);
+                b.Property(b => b.Status).HasDefaultValue(BookStateConstants.WantToRead);
             });
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Torc.Aguilar.BookLibrary.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using Torc.Aguilar.BookLibrary.Infrastructure.Data;
 namespace Torc.Aguilar.BookLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(BookLibraryContext))]
-    partial class BookLibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240218192755_BookAddedStatus")]
+    partial class BookAddedStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

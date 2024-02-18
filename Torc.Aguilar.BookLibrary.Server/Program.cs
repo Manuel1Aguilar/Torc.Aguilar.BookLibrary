@@ -1,11 +1,22 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Torc.Aguilar.BookLibrary.API.Configuration;
+using Torc.Aguilar.BookLibrary.Core.Interfaces.Repositories;
+using Torc.Aguilar.BookLibrary.Core.Interfaces.Services;
 using Torc.Aguilar.BookLibrary.Infrastructure.Data;
+using Torc.Aguilar.BookLibrary.Infrastructure.Repositories;
+using Torc.Aguilar.BookLibrary.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+
+builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddTransient<IBookRepository, BookRepository>();
+
 
 string? connectionString = builder.Configuration.GetConnectionString("BookDatabase");
 if (!string.IsNullOrEmpty(connectionString))
@@ -16,6 +27,13 @@ if (!string.IsNullOrEmpty(connectionString))
         options.UseSqlServer(connectionString);
     });
 }
+
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new AutoMapperProfile());
+});
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

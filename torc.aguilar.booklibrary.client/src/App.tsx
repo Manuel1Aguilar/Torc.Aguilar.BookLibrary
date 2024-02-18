@@ -70,7 +70,7 @@ function App() {
     };
 
 
-    const handlePageChange = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => {
+    const handlePageChange = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, page: number) => {
         setController({
             ...controller,
             page: page

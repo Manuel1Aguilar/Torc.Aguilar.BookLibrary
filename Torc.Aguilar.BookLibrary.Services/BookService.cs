@@ -17,19 +17,19 @@ namespace Torc.Aguilar.BookLibrary.Services
             _bookRepository = repo;
         }
 
-        public async Task<Result<PaginatedResult<BookDto>>> GetFiltered(BookFilter filter, int page, int pageSize)
+        public async Task<Result<PaginatedResult<BookGridModel>>> GetFiltered(BookFilter filter, int page, int pageSize)
         {
             try
             {
 
                 int skip = pageSize * page;
-                List<BookDto> values = _mapper.Map<List<BookDto>>(await _bookRepository.GetFiltered(filter.Author, filter.ISBN, filter.Status, skip, pageSize));
+                List<BookGridModel> values = _mapper.Map<List<BookGridModel>>(await _bookRepository.GetFiltered(filter.Author, filter.ISBN, filter.Status, skip, pageSize));
                 int count = await _bookRepository.GetFilteredCount(filter.Author, filter.ISBN, filter.Status);
-                return Result<PaginatedResult<BookDto>>.Success(new PaginatedResult<BookDto>(page, pageSize, count, values));
+                return Result<PaginatedResult<BookGridModel>>.Success(new PaginatedResult<BookGridModel>(page, pageSize, count, values));
             }
             catch (Exception ex)
             {
-                return Result<PaginatedResult<BookDto>>.Fail($"Error filtering books: {ex.Message}");
+                return Result<PaginatedResult<BookGridModel>>.Fail($"Error filtering books: {ex.Message}");
             }
         }
     }

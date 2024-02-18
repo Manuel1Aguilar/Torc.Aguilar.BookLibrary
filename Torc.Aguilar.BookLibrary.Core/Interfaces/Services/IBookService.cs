@@ -8,6 +8,6 @@ namespace Torc.Aguilar.BookLibrary.Core.Interfaces.Services
 {
     public interface IBookService : IBaseService<Book, int, BookDto>
     {
-        Task<Result<PaginatedResult<BookDto>>> GetFiltered(BookFilter filter, int page, int pageSize);
+        Task<Result<PaginatedResult<BookGridModel>>> GetFiltered(BookFilter filter, int page, int pageSize);
     }
 }

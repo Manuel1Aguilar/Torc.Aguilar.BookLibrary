@@ -9,6 +9,11 @@ namespace Torc.Aguilar.BookLibrary.API.Configuration
         public AutoMapperProfile()
         {
             CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<Book, BookGridModel>()
+                .ForMember(
+                dest => dest.Authors,
+                opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}")
+                ).ReverseMap();
         }
     }
 }

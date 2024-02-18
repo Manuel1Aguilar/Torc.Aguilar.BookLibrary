@@ -119,6 +119,9 @@ function App() {
                         <TableCell>
                             Available Copies
                         </TableCell>
+                        <TableCell>
+                            Status
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -145,6 +148,9 @@ function App() {
                             <TableCell>
                                 {book.availableCopies}
                             </TableCell>
+                            <TableCell>
+                                {book.status}
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -162,17 +168,17 @@ function App() {
 
     const searchGrid =
         <Grid container
-            p={1}
+            p={8}
             direction="row">
-            <Grid item sm={8}>
+            <Grid item sm={4}>
                 <TextField
-                    id="author-"
+                    id="author"
                     label="Author"
                     value={searchFilter.author} 
                     onChange={handleSearchChange}
                 />
             </Grid>
-            <Grid item sm={8}>
+            <Grid item sm={4}>
                 <TextField
                     id="isbn"
                     label="ISBN"
@@ -180,7 +186,7 @@ function App() {
                     onChange={handleSearchChange}
                 />
             </Grid>
-            <Grid item sm={8}>
+            <Grid item sm={4}>
                 <TextField
                     id="status"
                     label="Status"
@@ -188,8 +194,9 @@ function App() {
                     onChange={handleSearchChange}
                 />
             </Grid>
-            <Grid container item alignItems="stretch" justifyContent="center" sm={4}>
-                <Button onClick={handleSearch} variant="outlined">Search</Button>
+
+            <Grid container item sm={12} justifyContent="flex-end" style={{ paddingTop: 16 }}>
+                <Button onClick={handleSearch} variant="outlined" style={{ padding: '8px 16px' }}>Search</Button>
             </Grid>
         </Grid>;
 

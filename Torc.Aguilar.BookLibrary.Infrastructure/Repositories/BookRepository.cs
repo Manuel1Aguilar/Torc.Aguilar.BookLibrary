@@ -11,7 +11,18 @@ namespace Torc.Aguilar.BookLibrary.Infrastructure.Repositories
         {
         }
 
-        public async Task<List<Book>?> GetFiltered(string? author, string? isbn, string? status)
+        public async Task<List<Book>?> GetFiltered(string? author, string? isbn, string? status, int skip, int take)
+        {
+            IQueryable<Book> query = GetFilteredQuery(author, isbn, status).Skip(skip).Take(take);
+
+            return await query.ToListAsync();
+        }
+        public async Task<int> GetFilteredCount(string? author, string? isbn, string? status)
+        {
+            return await GetFilteredQuery(author, isbn, status).CountAsync();
+        }
+
+        private IQueryable<Book> GetFilteredQuery(string? author, string? isbn, string? status)
         {
             var query = _context.Books.AsQueryable();
             if (!string.IsNullOrEmpty(author))
@@ -27,7 +38,7 @@ namespace Torc.Aguilar.BookLibrary.Infrastructure.Repositories
                 query = query.Where(x => x.Status.Contains(status));
             }
 
-            return await query.ToListAsync();
+            return query;
         }
     }
 }

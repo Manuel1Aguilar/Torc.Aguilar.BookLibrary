@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Torc.Aguilar.BookLibrary.Models.Filters
+namespace Torc.Aguilar.BookLibrary.Models.Book
 {
     public class BookFilter
     {

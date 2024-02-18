@@ -3,8 +3,9 @@ using Torc.Aguilar.BookLibrary.Core.Entities;
 using Torc.Aguilar.BookLibrary.Core.Interfaces.Repositories;
 using Torc.Aguilar.BookLibrary.Core.Interfaces.Services;
 using Torc.Aguilar.BookLibrary.Models;
+using Torc.Aguilar.BookLibrary.Models.Book;
 using Torc.Aguilar.BookLibrary.Models.DTOs;
-using Torc.Aguilar.BookLibrary.Models.Filters;
+using Torc.Aguilar.BookLibrary.Models.Utilities;
 
 namespace Torc.Aguilar.BookLibrary.Services
 {
@@ -16,15 +17,19 @@ namespace Torc.Aguilar.BookLibrary.Services
             _bookRepository = repo;
         }
 
-        public async Task<Result<List<BookDto>>> GetFiltered(BookFilter filter)
+        public async Task<Result<PaginatedResult<BookDto>>> GetFiltered(BookFilter filter, int page, int pageSize)
         {
             try
             {
-                return Result<List<BookDto>>.Success(_mapper.Map<List<BookDto>>(await _bookRepository.GetFiltered(filter.Author, filter.ISBN, filter.Status)));
+
+                int skip = pageSize * page;
+                List<BookDto> values = _mapper.Map<List<BookDto>>(await _bookRepository.GetFiltered(filter.Author, filter.ISBN, filter.Status, skip, pageSize));
+                int count = await _bookRepository.GetFilteredCount(filter.Author, filter.ISBN, filter.Status);
+                return Result<PaginatedResult<BookDto>>.Success(new PaginatedResult<BookDto>(page, pageSize, count, values));
             }
             catch (Exception ex)
             {
-                return Result<List<BookDto>>.Fail($"Error filtering books: {ex.Message}");
+                return Result<PaginatedResult<BookDto>>.Fail($"Error filtering books: {ex.Message}");
             }
         }
     }

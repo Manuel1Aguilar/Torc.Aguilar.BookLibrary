@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Torc.Aguilar.BookLibrary.Core.Interfaces.Services;
+using Torc.Aguilar.BookLibrary.Models.Book;
 using Torc.Aguilar.BookLibrary.Models.DTOs;
-using Torc.Aguilar.BookLibrary.Models.Filters;
 
 namespace Torc.Aguilar.BookLibrary.Server.Controllers
 {
@@ -17,11 +17,11 @@ namespace Torc.Aguilar.BookLibrary.Server.Controllers
             _bookService = bookService;
         }
 
-        [HttpPost("filter")]
-        public async Task<IActionResult> GetFiltered(BookFilter filter)
+        [HttpPost("filter/{page}/{pageSize}")]
+        public async Task<IActionResult> GetFiltered(BookFilter filter, int page, int pageSize)
         {
             _logger.LogInformation("Getting filtered books");
-            var res = await _bookService.GetFiltered(filter);
+            var res = await _bookService.GetFiltered(filter, page, pageSize);
             if (res.IsSuccess)
             {
                 return Ok(res.Value);
